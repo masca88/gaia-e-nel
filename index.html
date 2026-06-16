@@ -304,9 +304,7 @@
         <span>Una canzone per due stelle</span>
       </div>
     </div>
-    <audio controls>
-      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
-    </audio>
+    <div id="player-slot-card"></div>
     <a class="btn-download btn-download-full" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
       ⬇ Scarica la canzone
     </a>
@@ -398,18 +396,31 @@
 
 </div>
 
+<!-- Audio element unico -->
+<audio id="player" controls autoplay style="display:none">
+  <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
+</audio>
+
 <!-- Sticky audio bar -->
 <div class="audio-bar">
   <div class="audio-bar-inner">
-    <audio id="player" controls autoplay>
-      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
-    </audio>
+    <div id="player-slot-sticky"></div>
   </div>
 </div>
 
 <script>
   const player = document.getElementById('player');
+  const cardSlot = document.getElementById('player-slot-card');
+  const stickySlot = document.getElementById('player-slot-sticky');
+  const audioBar = document.querySelector('.audio-bar');
+  const audioCard = document.querySelector('.audio-card');
+
+  player.style.display = '';
+  player.style.width = '100%';
   player.volume = 0.85;
+
+  // Inizia nella card
+  cardSlot.appendChild(player);
 
   const tryPlay = () => {
     player.play().catch(() => {
@@ -424,13 +435,16 @@
     window.addEventListener('load', tryPlay);
   }
 
-  const audioBar = document.querySelector('.audio-bar');
-  const audioCard = document.querySelector('.audio-card');
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      cardSlot.appendChild(player);
+      audioBar.classList.remove('visible');
+    } else {
+      stickySlot.appendChild(player);
+      audioBar.classList.add('visible');
+    }
+  }, { threshold: 0 });
 
-  const observer = new IntersectionObserver(
-    ([entry]) => audioBar.classList.toggle('visible', !entry.isIntersecting),
-    { threshold: 0 }
-  );
   observer.observe(audioCard);
 </script>
 </body>
