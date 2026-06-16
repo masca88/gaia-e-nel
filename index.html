@@ -207,9 +207,16 @@
       opacity: .8;
     }
 
+    .audio-player-row {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
     .audio-bar audio {
-      width: 100%;
-      margin-bottom: 1rem;
+      flex: 1;
+      min-width: 0;
+      height: 36px;
       border-radius: .5rem;
       outline: none;
     }
@@ -223,7 +230,6 @@
       background: linear-gradient(135deg, var(--rose), #b5607a);
       color: #fff;
       text-decoration: none;
-      padding: .65rem 1.5rem;
       border-radius: 99px;
       font-size: .85rem;
       letter-spacing: .05em;
@@ -235,6 +241,9 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(201,116,138,.45);
     }
+
+    .btn-download-full { padding: .65rem 1.5rem; }
+    .btn-download-icon { padding: .55rem .9rem; font-size: 1rem; }
 
     @media (max-width: 480px) {
       .audio-bar { padding: 1rem; }
@@ -256,6 +265,12 @@
 
   <div class="cover-wrap">
     <img src="gaia-e-nel.jpg" alt="Gaia e Nel" />
+  </div>
+
+  <div style="text-align:center; margin-bottom: 2rem;">
+    <a class="btn-download btn-download-full" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
+      ⬇ Scarica la canzone
+    </a>
   </div>
 
   <!-- Lyrics -->
@@ -354,13 +369,11 @@
         <span>Una canzone per due stelle</span>
       </div>
     </div>
-    <audio id="player" controls autoplay>
-      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
-    </audio>
-    <div>
-      <a class="btn-download" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
-        ⬇ Scarica la canzone
-      </a>
+    <div class="audio-player-row">
+      <audio id="player" controls autoplay>
+        <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
+      </audio>
+      <a class="btn-download btn-download-icon" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">⬇</a>
     </div>
   </div>
 </div>
