@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaia e Nel – Battesimo ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #c9748a;
+      --blush:   #f0cdd4;
+      --cream:   #fdf6f0;
+      --navy:    #2d3a5c;
+      --gold:    #c9a84c;
+      --text:    #3d2b35;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── stars bg ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,116,138,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(201,168,76,.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* ── header ── */
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .baptism-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: .35rem 1.1rem;
+      border-radius: 99px;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      line-height: 1;
+      color: var(--rose);
+      margin-bottom: .3rem;
+    }
+
+    h1 span { color: var(--navy); }
+
+    .subtitle {
+      font-size: .85rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .4rem;
+    }
+
+    .tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--rose);
+      opacity: .85;
+    }
+
+    /* ── stars deco ── */
+    .stars-row {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      font-size: 1rem;
+      margin: .8rem 0;
+      opacity: .7;
+    }
+
+    /* ── cover image ── */
+    .cover-wrap {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(45,58,92,.18), 0 4px 12px rgba(201,116,138,.12);
+      margin-bottom: 2rem;
+    }
+
+    .cover-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ── audio card ── */
+    .audio-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 8px 32px rgba(45,58,92,.1);
+      margin-bottom: 2.5rem;
+    }
+
+    .audio-card-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .audio-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .audio-meta strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+    }
+
+    .audio-meta span {
+      font-size: .8rem;
+      color: var(--rose);
+      opacity: .8;
+    }
+
+    audio {
+      width: 100%;
+      margin-bottom: 1rem;
+      border-radius: .5rem;
+      outline: none;
+    }
+
+    audio::-webkit-media-controls-panel { background: var(--blush); }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: linear-gradient(135deg, var(--rose), #b5607a);
+      color: #fff;
+      text-decoration: none;
+      padding: .65rem 1.5rem;
+      border-radius: 99px;
+      font-size: .85rem;
+      letter-spacing: .05em;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 16px rgba(201,116,138,.35);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,116,138,.45);
+    }
+
+    /* ── lyrics ── */
+    .lyrics-section {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 8px 32px rgba(45,58,92,.08);
+      margin-bottom: 2.5rem;
+    }
+
+    .lyrics-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .lyrics-title::after {
+      content: '';
+      display: block;
+      width: 50px; height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+      margin: .5rem auto 0;
+      border-radius: 2px;
+    }
+
+    .stanza {
+      margin-bottom: 1.5rem;
+    }
+
+    .stanza-label {
+      font-size: .7rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .4rem;
+    }
+
+    .stanza p {
+      line-height: 1.8;
+      font-size: .95rem;
+    }
+
+    .stanza p + p { margin-top: .1rem; }
+
+    .chorus { color: var(--rose); }
+    .chorus .stanza-label { color: var(--rose); }
+    .bridge { color: var(--navy); }
+    .bridge .stanza-label { color: var(--navy); }
+
+    .lang-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+      color: var(--gold);
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .lang-divider::before, .lang-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blush), transparent);
+    }
+
+    /* ── footer ── */
+    footer {
+      text-align: center;
+      font-size: .8rem;
+      color: var(--rose);
+      opacity: .7;
+      line-height: 1.8;
+    }
+
+    footer .hearts { font-size: 1.2rem; opacity: .9; }
+
+    /* ── responsive ── */
+    @media (max-width: 480px) {
+      .audio-card { padding: 1.25rem 1rem; }
+      .lyrics-section { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header>
+    <div class="baptism-badge">✨ Battesimo 2025 ✨</div>
+    <h1>Gaia <span>e</span> Nel</h1>
+    <p class="subtitle">Una canzone per due stelle</p>
+    <div class="stars-row">⭐ 💗 ⭐ 💗 ⭐</div>
+    <p class="tagline">Con mamma Iwona e papà Umberto,<br>la felicità è sempre in concerto.</p>
+  </header>
+
+  <div class="cover-wrap">
+    <img src="gaia-e-nel.jpg" alt="Gaia e Nel" />
+  </div>
+
+  <!-- Audio player -->
+  <div class="audio-card">
+    <div class="audio-card-header">
+      <div class="audio-icon">🎵</div>
+      <div class="audio-meta">
+        <strong>Gaia e Nel</strong>
+        <span>Una canzone per due stelle</span>
+      </div>
+    </div>
+    <audio id="player" controls autoplay>
+      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
+      Il tuo browser non supporta l'audio HTML5.
+    </audio>
+    <div>
+      <a class="btn-download" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
+        ⬇ Scarica la canzone
+      </a>
+    </div>
+  </div>
+
+  <!-- Lyrics -->
+  <div class="lyrics-section">
+    <h2 class="lyrics-title">Il Testo della Canzone</h2>
+
+    <!-- Verse 1 -->
+    <div class="stanza">
+      <div class="stanza-label">Verso 1</div>
+      <p>C'erano due stelle dentro un pancione,</p>
+      <p>pronte a fare un po' di rivoluzione.</p>
+      <p>Una si prendeva un po' più di spazio,</p>
+      <p>e così nacque il soprannome "Gaiona" per caso.</p>
+    </div>
+    <div class="stanza">
+      <p>L'altra la seguiva senza fare rumore,</p>
+      <p>ma aveva già nascosto un superpotere.</p>
+      <p>Due sorelline atterrate quaggiù,</p>
+      <p>e da quel giorno non ci annoiamo più.</p>
+    </div>
+
+    <!-- Chorus IT -->
+    <div class="stanza chorus">
+      <div class="stanza-label">Ritornello</div>
+      <p>Gaia e Nel, Gaia e Nel,</p>
+      <p>oggi cantiamo soltanto per voi.</p>
+      <p>Con un sorriso conquistate il mondo,</p>
+      <p>con un urlo ci svegliate in un secondo!</p>
+    </div>
+    <div class="stanza chorus">
+      <p>Gaia e Nel, Gaia e Nel,</p>
+      <p>mano nella mano come due stelle.</p>
+      <p>Con mamma Iwona e papà Umberto,</p>
+      <p>la felicità è sempre in concerto.</p>
+    </div>
+
+    <!-- Verse 2 -->
+    <div class="stanza">
+      <div class="stanza-label">Verso 2</div>
+      <p>E poi c'era quel nome da spiegare un po',</p>
+      <p>alla Nò che ci pensava e non capiva però.</p>
+      <p>"Ma Nel cosa vuol dire?" chiedeva lei.</p>
+      <p>Umberto sorrideva: "Come nel cassetto", direi.</p>
+    </div>
+    <div class="stanza">
+      <p>Problema risolto, applausi e allegria,</p>
+      <p>un'altra storia da raccontare in compagnia.</p>
+      <p>Ma il vero mistero nessuno lo sa,</p>
+      <p>come facciate a urlare con tanta intensità!</p>
+    </div>
+
+    <!-- Divider Polski -->
+    <div class="lang-divider">🇵🇱 Ritornello in Polacco 🇵🇱</div>
+
+    <!-- Chorus PL -->
+    <div class="stanza chorus">
+      <div class="stanza-label">Refren</div>
+      <p>Gaia i Nel, Gaia i Nel,</p>
+      <p>dzisiaj śpiewamy tylko dla was.</p>
+      <p>Jednym uśmiechem podbijacie świat,</p>
+      <p>jednym krzykiem budzicie nas!</p>
+    </div>
+    <div class="stanza chorus">
+      <p>Gaia i Nel, Gaia i Nel,</p>
+      <p>ręka w rękę jak dwie gwiazdy.</p>
+      <p>Z mamą Iwoną i tatą Umberto,</p>
+      <p>szczęście gra z nami każdego dnia.</p>
+    </div>
+
+    <!-- Bridge -->
+    <div class="lang-divider">Bridge</div>
+    <div class="stanza bridge">
+      <p>E quando parte l'urlo stellare,</p>
+      <p>si sente persino oltre il mare.</p>
+      <p>C'è chi sorride e chi non ci crede,</p>
+      <p>ma voi riempite ogni stanza di luce.</p>
+    </div>
+
+    <!-- Final Chorus -->
+    <div class="lang-divider">Finale</div>
+    <div class="stanza chorus">
+      <div class="stanza-label">Ritornello Finale</div>
+      <p>Gaia e Nel, Gaia e Nel,</p>
+      <p>crescete libere come il vento.</p>
+      <p>Tra mille strade che arriveranno,</p>
+      <p>avrete sempre un posto nel tempo.</p>
+    </div>
+    <div class="stanza chorus">
+      <p>Gaia e Nel, Gaia e Nel,</p>
+      <p>con gli occhi curiosi rivolti al cielo.</p>
+      <p>Qualunque strada vi porti lontano,</p>
+      <p>troverete sempre l'altra per mano.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="hearts">💗 💗 💗</div>
+    <p>Con tutto l'amore del mondo per Gaia e Nel</p>
+    <p>Il vostro primo anno è stato magico ✨</p>
+  </footer>
+
+</div>
+
+<script>
+  // Autoplay con fallback per browser che bloccano autoplay senza interazione
+  const player = document.getElementById('player');
+  player.volume = 0.85;
+
+  const tryPlay = () => {
+    player.play().catch(() => {
+      // Se autoplay bloccato, aspetta il primo click dell'utente
+      const resume = () => { player.play(); document.removeEventListener('click', resume); };
+      document.addEventListener('click', resume, { once: true });
+    });
+  };
+
+  if (document.readyState === 'complete') {
+    tryPlay();
+  } else {
+    window.addEventListener('load', tryPlay);
+  }
+</script>
+</body>
+</html>
