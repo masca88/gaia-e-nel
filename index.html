@@ -17,6 +17,7 @@
       --navy:    #2d3a5c;
       --gold:    #c9a84c;
       --text:    #3d2b35;
+      --bar-h:   88px;
     }
 
     html { scroll-behavior: smooth; }
@@ -27,9 +28,9 @@
       font-family: 'Lato', sans-serif;
       font-weight: 300;
       min-height: 100vh;
+      padding-bottom: var(--bar-h);
     }
 
-    /* ── stars bg ── */
     body::before {
       content: '';
       position: fixed;
@@ -46,14 +47,11 @@
       z-index: 1;
       max-width: 780px;
       margin: 0 auto;
-      padding: 2.5rem 1.25rem 4rem;
+      padding: 2.5rem 1.25rem 2rem;
     }
 
     /* ── header ── */
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+    header { text-align: center; margin-bottom: 2rem; }
 
     .baptism-badge {
       display: inline-block;
@@ -94,7 +92,6 @@
       opacity: .85;
     }
 
-    /* ── stars deco ── */
     .stars-row {
       display: flex;
       justify-content: center;
@@ -118,80 +115,13 @@
       height: auto;
     }
 
-    /* ── audio card ── */
-    .audio-card {
-      background: #fff;
-      border-radius: 1.25rem;
-      padding: 1.75rem 1.5rem;
-      box-shadow: 0 8px 32px rgba(45,58,92,.1);
-      margin-bottom: 2.5rem;
-    }
-
-    .audio-card-header {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .audio-icon {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--rose), var(--gold));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .audio-meta strong {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--navy);
-    }
-
-    .audio-meta span {
-      font-size: .8rem;
-      color: var(--rose);
-      opacity: .8;
-    }
-
-    audio {
-      width: 100%;
-      margin-bottom: 1rem;
-      border-radius: .5rem;
-      outline: none;
-    }
-
-    audio::-webkit-media-controls-panel { background: var(--blush); }
-
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      background: linear-gradient(135deg, var(--rose), #b5607a);
-      color: #fff;
-      text-decoration: none;
-      padding: .65rem 1.5rem;
-      border-radius: 99px;
-      font-size: .85rem;
-      letter-spacing: .05em;
-      transition: transform .15s, box-shadow .15s;
-      box-shadow: 0 4px 16px rgba(201,116,138,.35);
-    }
-
-    .btn-download:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(201,116,138,.45);
-    }
-
     /* ── lyrics ── */
     .lyrics-section {
       background: #fff;
       border-radius: 1.25rem;
       padding: 2rem 1.75rem;
       box-shadow: 0 8px 32px rgba(45,58,92,.08);
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
 
     .lyrics-title {
@@ -211,30 +141,15 @@
       border-radius: 2px;
     }
 
-    .stanza {
-      margin-bottom: 1.5rem;
-    }
-
-    .stanza-label {
-      font-size: .7rem;
-      font-weight: 400;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .4rem;
-    }
+    .stanza { margin-bottom: 1.5rem; }
 
     .stanza p {
       line-height: 1.8;
       font-size: .95rem;
     }
 
-    .stanza p + p { margin-top: .1rem; }
-
     .chorus { color: var(--rose); }
-    .chorus .stanza-label { color: var(--rose); }
     .bridge { color: var(--navy); }
-    .bridge .stanza-label { color: var(--navy); }
 
     .lang-divider {
       display: flex;
@@ -265,14 +180,96 @@
 
     footer .hearts { font-size: 1.2rem; opacity: .9; }
 
-    /* ── responsive ── */
+    /* ── sticky audio bar ── */
+    .audio-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--bar-h);
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--blush);
+      box-shadow: 0 -4px 24px rgba(45,58,92,.10);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 1.25rem;
+    }
+
+    .audio-bar-meta {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      flex-shrink: 0;
+    }
+
+    .audio-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .audio-bar-meta .meta-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: .9rem;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .audio-bar-meta .meta-text span {
+      font-size: .7rem;
+      color: var(--rose);
+      opacity: .8;
+      white-space: nowrap;
+    }
+
+    .audio-bar audio {
+      flex: 1;
+      min-width: 0;
+      height: 36px;
+      border-radius: .5rem;
+      outline: none;
+    }
+
+    .audio-bar audio::-webkit-media-controls-panel { background: var(--blush); }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: linear-gradient(135deg, var(--rose), #b5607a);
+      color: #fff;
+      text-decoration: none;
+      padding: .5rem 1rem;
+      border-radius: 99px;
+      font-size: .78rem;
+      letter-spacing: .05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 12px rgba(201,116,138,.35);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(201,116,138,.45);
+    }
+
+    /* hide meta text on very small screens */
     @media (max-width: 480px) {
-      .audio-card { padding: 1.25rem 1rem; }
+      .audio-bar-meta .meta-text { display: none; }
       .lyrics-section { padding: 1.5rem 1rem; }
+      .btn-download span { display: none; }
     }
   </style>
 </head>
 <body>
+
 <div class="page-wrap">
 
   <header>
@@ -287,33 +284,11 @@
     <img src="gaia-e-nel.jpg" alt="Gaia e Nel" />
   </div>
 
-  <!-- Audio player -->
-  <div class="audio-card">
-    <div class="audio-card-header">
-      <div class="audio-icon">🎵</div>
-      <div class="audio-meta">
-        <strong>Gaia e Nel</strong>
-        <span>Una canzone per due stelle</span>
-      </div>
-    </div>
-    <audio id="player" controls autoplay>
-      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
-      Il tuo browser non supporta l'audio HTML5.
-    </audio>
-    <div>
-      <a class="btn-download" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
-        ⬇ Scarica la canzone
-      </a>
-    </div>
-  </div>
-
   <!-- Lyrics -->
   <div class="lyrics-section">
     <h2 class="lyrics-title">Il Testo della Canzone</h2>
 
-    <!-- Verse 1 -->
     <div class="stanza">
-      <div class="stanza-label">Verso 1</div>
       <p>C'erano due stelle dentro un pancione,</p>
       <p>pronte a fare un po' di rivoluzione.</p>
       <p>Una si prendeva un po' più di spazio,</p>
@@ -326,9 +301,7 @@
       <p>e da quel giorno non ci annoiamo più.</p>
     </div>
 
-    <!-- Chorus IT -->
     <div class="stanza chorus">
-      <div class="stanza-label">Ritornello</div>
       <p>Gaia e Nel, Gaia e Nel,</p>
       <p>oggi cantiamo soltanto per voi.</p>
       <p>Con un sorriso conquistate il mondo,</p>
@@ -341,9 +314,7 @@
       <p>la felicità è sempre in concerto.</p>
     </div>
 
-    <!-- Verse 2 -->
     <div class="stanza">
-      <div class="stanza-label">Verso 2</div>
       <p>E poi c'era quel nome da spiegare un po',</p>
       <p>alla Nò che ci pensava e non capiva però.</p>
       <p>"Ma Nel cosa vuol dire?" chiedeva lei.</p>
@@ -356,12 +327,9 @@
       <p>come facciate a urlare con tanta intensità!</p>
     </div>
 
-    <!-- Divider Polski -->
-    <div class="lang-divider">🇵🇱 Ritornello in Polacco 🇵🇱</div>
+    <div class="lang-divider">🇵🇱 in polacco 🇵🇱</div>
 
-    <!-- Chorus PL -->
     <div class="stanza chorus">
-      <div class="stanza-label">Refren</div>
       <p>Gaia i Nel, Gaia i Nel,</p>
       <p>dzisiaj śpiewamy tylko dla was.</p>
       <p>Jednym uśmiechem podbijacie świat,</p>
@@ -374,8 +342,8 @@
       <p>szczęście gra z nami każdego dnia.</p>
     </div>
 
-    <!-- Bridge -->
-    <div class="lang-divider">Bridge</div>
+    <div class="lang-divider">· · ·</div>
+
     <div class="stanza bridge">
       <p>E quando parte l'urlo stellare,</p>
       <p>si sente persino oltre il mare.</p>
@@ -383,10 +351,9 @@
       <p>ma voi riempite ogni stanza di luce.</p>
     </div>
 
-    <!-- Final Chorus -->
-    <div class="lang-divider">Finale</div>
+    <div class="lang-divider">· · ·</div>
+
     <div class="stanza chorus">
-      <div class="stanza-label">Ritornello Finale</div>
       <p>Gaia e Nel, Gaia e Nel,</p>
       <p>crescete libere come il vento.</p>
       <p>Tra mille strade che arriveranno,</p>
@@ -409,14 +376,29 @@
 
 </div>
 
+<!-- Sticky audio bar -->
+<div class="audio-bar">
+  <div class="audio-bar-meta">
+    <div class="audio-icon">🎵</div>
+    <div class="meta-text">
+      <strong>Gaia e Nel</strong>
+      <span>Una canzone per due stelle</span>
+    </div>
+  </div>
+  <audio id="player" controls autoplay>
+    <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
+  </audio>
+  <a class="btn-download" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
+    ⬇ <span>Scarica</span>
+  </a>
+</div>
+
 <script>
-  // Autoplay con fallback per browser che bloccano autoplay senza interazione
   const player = document.getElementById('player');
   player.volume = 0.85;
 
   const tryPlay = () => {
     player.play().catch(() => {
-      // Se autoplay bloccato, aspetta il primo click dell'utente
       const resume = () => { player.play(); document.removeEventListener('click', resume); };
       document.addEventListener('click', resume, { once: true });
     });
