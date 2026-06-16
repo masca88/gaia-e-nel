@@ -196,6 +196,12 @@
       border-top: 1px solid var(--blush);
       box-shadow: 0 -8px 32px rgba(45,58,92,.10);
       padding: .75rem 1.5rem;
+      transform: translateY(100%);
+      transition: transform .3s ease;
+    }
+
+    .audio-bar.visible {
+      transform: translateY(0);
     }
 
     .audio-bar-inner {
@@ -417,6 +423,15 @@
   } else {
     window.addEventListener('load', tryPlay);
   }
+
+  const audioBar = document.querySelector('.audio-bar');
+  const audioCard = document.querySelector('.audio-card');
+
+  const observer = new IntersectionObserver(
+    ([entry]) => audioBar.classList.toggle('visible', !entry.isIntersecting),
+    { threshold: 0 }
+  );
+  observer.observe(audioCard);
 </script>
 </body>
 </html>
