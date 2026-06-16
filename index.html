@@ -17,7 +17,7 @@
       --navy:    #2d3a5c;
       --gold:    #c9a84c;
       --text:    #3d2b35;
-      --bar-h:   220px;
+      --bar-h:   72px;
     }
 
     html { scroll-behavior: smooth; }
@@ -170,7 +170,7 @@
       background: #fff;
       border-top: 1px solid var(--blush);
       box-shadow: 0 -8px 32px rgba(45,58,92,.10);
-      padding: 1.25rem 1.5rem;
+      padding: .75rem 1.5rem;
     }
 
     .audio-bar-inner {
@@ -214,8 +214,7 @@
     }
 
     .audio-bar audio {
-      flex: 1;
-      min-width: 0;
+      width: 100%;
       height: 36px;
       border-radius: .5rem;
       outline: none;
@@ -361,19 +360,9 @@
 <!-- Sticky audio bar -->
 <div class="audio-bar">
   <div class="audio-bar-inner">
-    <div class="audio-bar-header">
-      <div class="audio-icon">🎵</div>
-      <div class="audio-meta">
-        <strong>Gaia e Nel</strong>
-        <span>Una canzone per due stelle</span>
-      </div>
-    </div>
-    <div class="audio-player-row">
-      <audio id="player" controls autoplay>
-        <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
-      </audio>
-      <a class="btn-download btn-download-icon" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">⬇</a>
-    </div>
+    <audio id="player" controls autoplay>
+      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
+    </audio>
   </div>
 </div>
 
