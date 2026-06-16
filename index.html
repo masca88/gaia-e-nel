@@ -115,6 +115,31 @@
       height: auto;
     }
 
+    /* ── audio card in pagina ── */
+    .audio-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 8px 32px rgba(45,58,92,.1);
+      margin-bottom: 2rem;
+    }
+
+    .audio-card-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .audio-card audio {
+      width: 100%;
+      margin-bottom: 1rem;
+      border-radius: .5rem;
+      outline: none;
+    }
+
+    .audio-card audio::-webkit-media-controls-panel { background: var(--blush); }
+
     /* ── lyrics ── */
     .lyrics-section {
       background: #fff;
@@ -265,7 +290,17 @@
     <img src="gaia-e-nel.jpg" alt="Gaia e Nel" />
   </div>
 
-  <div style="text-align:center; margin-bottom: 2rem;">
+  <div class="audio-card">
+    <div class="audio-card-header">
+      <div class="audio-icon">🎵</div>
+      <div class="audio-meta">
+        <strong>Gaia e Nel</strong>
+        <span>Una canzone per due stelle</span>
+      </div>
+    </div>
+    <audio controls>
+      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
+    </audio>
     <a class="btn-download btn-download-full" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
       ⬇ Scarica la canzone
     </a>
