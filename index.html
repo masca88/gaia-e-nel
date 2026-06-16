@@ -17,7 +17,7 @@
       --navy:    #2d3a5c;
       --gold:    #c9a84c;
       --text:    #3d2b35;
-      --bar-h:   88px;
+      --bar-h:   220px;
     }
 
     html { scroll-behavior: smooth; }
@@ -167,73 +167,78 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 100;
-      background: linear-gradient(135deg, var(--rose), var(--gold));
-      box-shadow: 0 -4px 24px rgba(45,58,92,.18);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: .75rem 1.25rem;
+      background: #fff;
+      border-top: 1px solid var(--blush);
+      box-shadow: 0 -8px 32px rgba(45,58,92,.10);
+      padding: 1.25rem 1.5rem;
     }
 
-    .audio-bar-meta {
+    .audio-bar-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .audio-bar-header {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+
+    .audio-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
       flex-shrink: 0;
     }
 
-    .audio-bar-meta strong {
+    .audio-meta strong {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: #fff;
-      line-height: 1.2;
-      white-space: nowrap;
+      font-size: 1.1rem;
+      color: var(--navy);
     }
 
-    .audio-bar-meta span {
-      font-size: .65rem;
-      color: rgba(255,255,255,.8);
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      white-space: nowrap;
+    .audio-meta span {
+      font-size: .8rem;
+      color: var(--rose);
+      opacity: .8;
     }
 
     .audio-bar audio {
-      flex: 1;
-      min-width: 0;
-      height: 36px;
+      width: 100%;
+      margin-bottom: 1rem;
       border-radius: .5rem;
       outline: none;
     }
 
-    .audio-bar audio::-webkit-media-controls-panel {
-      background: rgba(255,255,255,.2);
-    }
+    .audio-bar audio::-webkit-media-controls-panel { background: var(--blush); }
 
     .btn-download {
       display: inline-flex;
       align-items: center;
-      gap: .4rem;
-      background: rgba(255,255,255,.22);
-      border: 1px solid rgba(255,255,255,.45);
+      gap: .5rem;
+      background: linear-gradient(135deg, var(--rose), #b5607a);
       color: #fff;
       text-decoration: none;
-      padding: .5rem 1rem;
+      padding: .65rem 1.5rem;
       border-radius: 99px;
-      font-size: .78rem;
+      font-size: .85rem;
       letter-spacing: .05em;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background .15s;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 16px rgba(201,116,138,.35);
     }
 
-    .btn-download:hover { background: rgba(255,255,255,.35); }
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,116,138,.45);
+    }
 
     @media (max-width: 480px) {
-      .audio-bar-meta { display: none; }
+      .audio-bar { padding: 1rem; }
       .lyrics-section { padding: 1.5rem 1rem; }
-      .btn-download span { display: none; }
     }
   </style>
 </head>
@@ -341,16 +346,23 @@
 
 <!-- Sticky audio bar -->
 <div class="audio-bar">
-  <div class="audio-bar-meta">
-    <strong>Gaia e Nel</strong>
-    <span>Una canzone per due stelle</span>
+  <div class="audio-bar-inner">
+    <div class="audio-bar-header">
+      <div class="audio-icon">🎵</div>
+      <div class="audio-meta">
+        <strong>Gaia e Nel</strong>
+        <span>Una canzone per due stelle</span>
+      </div>
+    </div>
+    <audio id="player" controls autoplay>
+      <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
+    </audio>
+    <div>
+      <a class="btn-download" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
+        ⬇ Scarica la canzone
+      </a>
+    </div>
   </div>
-  <audio id="player" controls autoplay>
-    <source src="gaia-e-nel-song.mp3" type="audio/mpeg" />
-  </audio>
-  <a class="btn-download" href="gaia-e-nel-song.mp3" download="Gaia-e-Nel.mp3">
-    ⬇ <span>Scarica</span>
-  </a>
 </div>
 
 <script>
